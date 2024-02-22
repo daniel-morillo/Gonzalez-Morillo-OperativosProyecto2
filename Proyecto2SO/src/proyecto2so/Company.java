@@ -15,6 +15,11 @@ public class Company {
     private Cola Priority3;
     private Cola Reinforcements;
 
+    public Company() {
+    }
+    
+    
+
     /**
      * @return the Priority1
      */
