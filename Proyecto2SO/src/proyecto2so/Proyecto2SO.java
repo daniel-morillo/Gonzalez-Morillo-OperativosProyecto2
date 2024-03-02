@@ -15,6 +15,9 @@ public class Proyecto2SO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
-    
+        //esto es para crear los personajes son esos nombres e imagenes fijas
+        String RSNames[] = {"Mordecai","Rigby","Skips","Musculoso","Fantasmin","Benson","Thomas","Papaleta","Muerte","AntiPapaleta","Margarita","CJ","Aylin"};
+        
+        String RSPhotos[] = {"src/resources/mordecai.png","src/resources/rigby.png","src/resources/skips.png","src/resources/musculoso.png","src/resources/fantasmin.png","src/resources/benson.png","src/resources/thomas.png","src/resources/papaleta.png","src/resources/death.png","src/resources/antipops.png","src/resources/margarita.png","src/resources/cj.png","src/resources/aylin.png"};
+}
 }
