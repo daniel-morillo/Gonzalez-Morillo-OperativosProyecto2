@@ -19,5 +19,7 @@ public class Proyecto2SO {
         String RSNames[] = {"Mordecai","Rigby","Skips","Musculoso","Fantasmin","Benson","Thomas","Papaleta","Muerte","AntiPapaleta","Margarita","CJ","Aylin"};
         
         String RSPhotos[] = {"src/resources/mordecai.png","src/resources/rigby.png","src/resources/skips.png","src/resources/musculoso.png","src/resources/fantasmin.png","src/resources/benson.png","src/resources/thomas.png","src/resources/papaleta.png","src/resources/death.png","src/resources/antipops.png","src/resources/margarita.png","src/resources/cj.png","src/resources/aylin.png"};
+        
+        String AVNmames[] = {"Aang", "Zuko", "Napa"};
 }
 }
