@@ -55,6 +55,43 @@ public class Cola<T> {
         return pFirst.getElemento();
     }
     
+    public void borrar(Character C) {
+        if (esVacia()) {
+            System.out.println("Cola vacia");
+            return;
+        }
+
+        
+        if (leerCabeza() == C) {
+            pFirst = pFirst.getpNext();
+            if (pFirst == null) {
+                pLast = null;
+            }
+            System.out.println("Luchador " + C.getName() + " eliminado");
+            size--;
+            return;
+        }
+
+        Nodo actual = pFirst;
+        Nodo anterior = null;
+
+        while (actual != null && actual.getElemento() != C) {
+            anterior = actual;
+            actual = actual.getpNext();
+        }
+
+        if (actual != null) {
+            anterior.setpNext(actual.getpNext());
+            if (actual == pLast) {
+                pLast = anterior;
+            }
+            System.out.println("Luchador " + C.getName() + " eliminado");
+            size--;
+        } else {
+            System.out.println("Elemento no encontrado");
+        }
+    }
+    
 
     public Nodo<T> getpFirst() {
         return pFirst;
