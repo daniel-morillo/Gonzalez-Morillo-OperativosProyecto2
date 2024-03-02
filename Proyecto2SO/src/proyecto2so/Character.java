@@ -12,13 +12,15 @@ public class Character {
     
     private String Name;
     private String Path;
+    private String ID;
     private int Priority;
+    private int priorityCounter;
     
     //Si son true, son de calidad
-    private boolean AbilityQuality;
-    private boolean VitalityQuality;
-    private boolean StrengthQuality;
-    private boolean AgilityQuality;
+    private int AbilityQuality;
+    private int VitalityQuality;
+    private int StrengthQuality;
+    private int AgilityQuality;
     
     //Valores de los atributos
     private int Ability;
@@ -26,10 +28,11 @@ public class Character {
     private int Strength;
     private int Agility;
 
-    public Character(String Name, String Path, int Priority, boolean AbilityQuality, boolean VitalityQuality, boolean StrengthQuality, boolean AgilityQuality, int Ability, int Vitality, int Strength, int Agility) {
+    public Character(String ID, String Name, String Path, int AbilityQuality, int VitalityQuality, int StrengthQuality, int AgilityQuality, int Ability, int Vitality, int Strength, int Agility) {
         this.Name = Name;
         this.Path = Path;
-        this.Priority = Priority;
+        this.ID = ID;
+        this.priorityCounter = 0;
         this.AbilityQuality = AbilityQuality;
         this.VitalityQuality = VitalityQuality;
         this.StrengthQuality = StrengthQuality;
@@ -87,56 +90,56 @@ public class Character {
     /**
      * @return the AbilityQuality
      */
-    public boolean isAbilityQuality() {
+    public int getAbilityQuality() {
         return AbilityQuality;
     }
 
     /**
      * @param AbilityQuality the AbilityQuality to set
      */
-    public void setAbilityQuality(boolean AbilityQuality) {
+    public void setAbilityQuality(int AbilityQuality) {
         this.AbilityQuality = AbilityQuality;
     }
 
     /**
      * @return the VitalityQuality
      */
-    public boolean isVitalityQuality() {
+    public int getVitalityQuality() {
         return VitalityQuality;
     }
 
     /**
      * @param VitalityQuality the VitalityQuality to set
      */
-    public void setVitalityQuality(boolean VitalityQuality) {
+    public void setVitalityQuality(int VitalityQuality) {
         this.VitalityQuality = VitalityQuality;
     }
 
     /**
      * @return the StrengthQuality
      */
-    public boolean isStrengthQuality() {
+    public int getStrengthQuality() {
         return StrengthQuality;
     }
 
     /**
      * @param StrengthQuality the StrengthQuality to set
      */
-    public void setStrengthQuality(boolean StrengthQuality) {
+    public void setStrengthQuality(int StrengthQuality) {
         this.StrengthQuality = StrengthQuality;
     }
 
     /**
      * @return the AgilityQuality
      */
-    public boolean isAgilityQuality() {
+    public int getAgilityQuality() {
         return AgilityQuality;
     }
 
     /**
      * @param AgilityQuality the AgilityQuality to set
      */
-    public void setAgilityQuality(boolean AgilityQuality) {
+    public void setAgilityQuality(int AgilityQuality) {
         this.AgilityQuality = AgilityQuality;
     }
 
@@ -194,6 +197,34 @@ public class Character {
      */
     public void setAgility(int Agility) {
         this.Agility = Agility;
+    }
+
+    /**
+     * @return the priorityCounter
+     */
+    public int getPriorityCounter() {
+        return priorityCounter;
+    }
+
+    /**
+     * @param priorityCounter the priorityCounter to set
+     */
+    public void setPriorityCounter(int priorityCounter) {
+        this.priorityCounter = priorityCounter;
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
     
