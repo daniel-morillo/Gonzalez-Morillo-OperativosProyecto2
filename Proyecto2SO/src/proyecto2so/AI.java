@@ -6,6 +6,7 @@ package proyecto2so;
 
 import static java.lang.Thread.sleep;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author user
  */
-public class AI extends Thread{
+public class AI {
     
     private Integer battleDuration;
     private Company rsCompany;
@@ -21,14 +22,17 @@ public class AI extends Thread{
     private Cola ganadores; //Cola provisional
     private Integer avWins;
     private Integer rsWins;
+    private Semaphore mutex;
     
-    public AI(Integer battleDuration, Company rsCompany, Company avCompany){
+    public AI(Integer battleDuration, Company rsCompany, Company avCompany, Semaphore mutex){
         
         this.battleDuration = battleDuration;
         this.rsCompany = rsCompany;
         this.avCompany = avCompany;
         this.avWins = 0;
         this.rsWins = 0;
+        this.mutex = mutex;
+        this.ganadores = new Cola();
     
     }
     

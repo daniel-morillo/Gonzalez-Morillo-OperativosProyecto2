@@ -47,6 +47,10 @@ public class Company {
         givePriority(newCharater);
         
         setNumCharacter(getNumCharacter()+1);
+        
+        if (getNumCharacter() >= getNames().length) {
+            setNumCharacter(0);
+        }
     }
     
     public int isQuality (int item) {

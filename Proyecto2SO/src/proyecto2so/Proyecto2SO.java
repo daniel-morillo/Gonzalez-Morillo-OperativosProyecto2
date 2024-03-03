@@ -5,6 +5,7 @@
 package proyecto2so;
 
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Proyecto2SO {
     public static void main(String[] args) {
         // TODO code application logic here
         //esto es para crear los personajes son esos nombres e imagenes fijas
+        
+        Semaphore mutex = new Semaphore(1);
         String RSNames[] = {"Mordecai","Rigby","Skips","Musculoso","Fantasmin","Benson","Thomas","Papaleta","Muerte","AntiPapaleta","Margarita","CJ","Aylin"};
         
         String RSPhotos[] = {"src/resources/mordecai.png","src/resources/rigby.png","src/resources/skips.png","src/resources/musculoso.png","src/resources/fantasmin.png","src/resources/benson.png","src/resources/thomas.png","src/resources/papaleta.png","src/resources/death.png","src/resources/antipops.png","src/resources/margarita.png","src/resources/cj.png","src/resources/aylin.png"};
@@ -26,13 +29,17 @@ public class Proyecto2SO {
         
         String AVPhotos[] = {"src/resources/Aang.PNG","src/resources/Katara.png","src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG" , "src/resources/Ozai.PNG" , "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG"};
         
-        Company RSCompany = new Company( '@', RSNames, RSPhotos);
-        Company AVCompany = new Company('@', AVNames, AVPhotos);
+        Company RSCompany = new Company( 'R', RSNames, RSPhotos);
+        Company AVCompany = new Company('A', AVNames, AVPhotos);
         
         RSCompany.CreateCharacter();
         AVCompany.CreateCharacter();
         
-        AI ai = new AI(10, RSCompany, AVCompany);
+        AI ai = new AI(1000, RSCompany, AVCompany, mutex);
+        SO so = new SO(RSCompany, AVCompany, mutex);
+        
+        Simulacion simulacion = new Simulacion(RSCompany, AVCompany, so, ai);
+        simulacion.start();
         
         
        
