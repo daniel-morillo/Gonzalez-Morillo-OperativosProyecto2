@@ -19,6 +19,7 @@ public class Company {
     private Cola Reinforcements;
     private char Prefix;
     private int NumCharacter;
+    private int Numimg;
 
     public Company(char prefix, String[] names, String[] images) {
         
@@ -30,6 +31,7 @@ public class Company {
         this.Priority3 = new Cola();
         this.Reinforcements = new Cola();
         this.NumCharacter = 0;
+        
     }
     
     public void CreateCharacter(){
@@ -42,14 +44,15 @@ public class Company {
         
         String ID = getPrefix() + String.valueOf(getNumCharacter());
         
-        Character newCharater = new Character(ID, getNames()[getNumCharacter()], getImages()[getNumCharacter()], isQuality(0), isQuality(1), isQuality(2), isQuality(3),Ability,HP, Strength, Agility);
+        Character newCharater = new Character(ID, getNames()[getNumimg()], getImages()[getNumimg()], isQuality(0), isQuality(1), isQuality(2), isQuality(3),Ability,HP, Strength, Agility);
         
         givePriority(newCharater);
         
         setNumCharacter(getNumCharacter()+1);
+        setNumimg(getNumimg()+1);
         
-        if (getNumCharacter() >= getNames().length) {
-            setNumCharacter(0);
+        if (getNumimg()>= getNames().length) {
+            setNumimg(0);
         }
     }
     
@@ -203,6 +206,20 @@ public class Company {
      */
     public void setImages(String[] images) {
         this.images = images;
+    }
+
+    /**
+     * @return the Numimg
+     */
+    public int getNumimg() {
+        return Numimg;
+    }
+
+    /**
+     * @param Numimg the Numimg to set
+     */
+    public void setNumimg(int Numimg) {
+        this.Numimg = Numimg;
     }
     
     
