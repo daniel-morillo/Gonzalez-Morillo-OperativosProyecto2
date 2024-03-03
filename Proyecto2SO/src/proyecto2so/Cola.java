@@ -31,7 +31,7 @@ public class Cola<T> {
     }
     
 
-    public void encolar(T valor) {
+    public void encolar(Character valor) {
         Nodo<T> pNew = new Nodo(valor);
         if (pFirst == null) {
             pFirst = pNew;
@@ -51,7 +51,7 @@ public class Cola<T> {
     }
     
 
-    public T leerCabeza() {
+    public Character leerCabeza() {
         return pFirst.getElemento();
     }
     

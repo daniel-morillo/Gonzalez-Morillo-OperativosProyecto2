@@ -30,13 +30,12 @@ public class Proyecto2SO {
         Company AVCompany = new Company('@', AVNames, AVPhotos);
         
         RSCompany.CreateCharacter();
+        AVCompany.CreateCharacter();
         
-        Integer prueba = RSCompany.getNumCharacter();
+        AI ai = new AI(10, RSCompany, AVCompany);
         
-        Random random = new Random();
-        int result = random.nextInt(2) + 1;
         
-        System.out.println(result);
+       
         
         
 }
