@@ -9,24 +9,24 @@ package proyecto2so;
  * @author Daniel Morillo
  */
 public class  Nodo<T> {
-    private T elemento;
+    private Character elemento;
     private Nodo pNext;
 
-    public Nodo(T elemento, Nodo pNext) {
+    public Nodo(Character elemento, Nodo pNext) {
         this.elemento = elemento;
         this.pNext = pNext;
     }
     
-    public Nodo(T elemento) {
+    public Nodo(Character elemento) {
         this.elemento = elemento;
         this.pNext = null;
     }
 
-    public T getElemento() {
+    public Character getElemento() {
         return elemento;
     }
 
-    public void setElemento(T elemento) {
+    public void setElemento(Character elemento) {
         this.elemento = elemento;
     }
 
