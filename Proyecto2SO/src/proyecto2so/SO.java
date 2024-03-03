@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
  *
  * @author user
  */
-public class SO  {
+public class SO extends Thread  {
     
     private Company Company1;
     private int Company1CharCounter;
