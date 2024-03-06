@@ -36,7 +36,8 @@ public class Company {
     
     public void CreateCharacter(){
       
-                
+        
+        
         int Ability = (int)(Math.floor(Math.random()*100));
         int Agility = (int)(Math.floor(Math.random()*100));
         int Strength = (int)(Math.floor(Math.random()*100));
@@ -44,16 +45,36 @@ public class Company {
         
         String ID = getPrefix() + String.valueOf(getNumCharacter());
         
-        Character newCharater = new Character(ID, getNames()[getNumimg()], getImages()[getNumimg()], isQuality(0), isQuality(1), isQuality(2), isQuality(3),Ability,HP, Strength, Agility);
+        Character newCharacter = new Character(ID, getNames()[getNumimg()], getImages()[getNumimg()], isQuality(0), isQuality(1), isQuality(2), isQuality(3),Ability,HP, Strength, Agility);
         
-        givePriority(newCharater);
+        
+        if (getNumCharacter() < 3) {
+            
+            switch (getNumCharacter()) {
+                
+                case 0: {getPriority1().encolar(newCharacter);
+                break;}
+                
+                case 1: {getPriority2().encolar(newCharacter);
+                break;}
+                
+                case 2: {getPriority3().encolar(newCharacter);
+                break;}
+            }
+            
+        } else {
+            givePriority(newCharacter);
+        }
         
         setNumCharacter(getNumCharacter()+1);
         setNumimg(getNumimg()+1);
         
+        
+        
         if (getNumimg()>= getNames().length) {
             setNumimg(0);
         }
+        
     }
     
     public int isQuality (int item) {
@@ -64,15 +85,19 @@ public class Company {
             
             case 0: if (Math.random() >= 0.4) {
                 Validation = 1;
+                break;
             }
             case 1: if (Math.random() >= 0.3) {
                 Validation = 1;
+                break;
             }
             case 2: if (Math.random() >= 0.5) {
                 Validation = 1;
+                break;
             }
             case 3: if (Math.random() >= 0.6) {
                 Validation = 1;
+                break;
             }
             
         }
@@ -86,11 +111,20 @@ public class Company {
         
         switch (Quality) {
             
-            case 4: getPriority1().encolar(character);
-            case 3: getPriority1().encolar(character);
-            case 2: getPriority2().encolar(character);
-            case 1: getPriority2().encolar(character);
-            case 0: getPriority3().encolar(character);
+            case 4: {getPriority1().encolar(character);
+            break;}
+            
+            case 3: {getPriority1().encolar(character);
+            break;}
+            
+            case 2: {getPriority2().encolar(character);
+            break;}
+            
+            case 1: {getPriority3().encolar(character);
+            break;}
+            
+            case 0: {getPriority3().encolar(character);
+            break;}
         }
     }
     

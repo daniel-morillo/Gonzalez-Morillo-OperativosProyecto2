@@ -26,11 +26,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     String AVNames[] = {"Aang", "Katara", "Sokka", "Toph", "Zuko", "Iroh", "Appa", "Momo", "Suki", "Azula", "Ozai", "Ty Lee", "Bumi"};
 
     String AVPhotos[] = {"src/resources/Aang.PNG", "src/resources/Katara.png", "src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG", "src/resources/Ozai.PNG", "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG"};
+    
+    
 
     Company RSCompany = new Company('R', RSNames, RSPhotos);
     Company AVCompany = new Company('A', AVNames, AVPhotos);
 
-    AI ai = new AI(1000, RSCompany, AVCompany, mutex );
+    AI ai = new AI(10000, RSCompany, AVCompany, mutex );
     SO so = new SO(RSCompany, AVCompany, mutex);
 
     Simulacion simulacion = new Simulacion(RSCompany, AVCompany, so, ai);
@@ -40,11 +42,30 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      * Creates new form InterfazPrincipal
      */
     public InterfazPrincipal() {
-        RSCompany.CreateCharacter();
-        AVCompany.CreateCharacter();
         initComponents();
         JLabel[] AIRSLabels = {RSIDLabel, RSFighterLabel, RSHPLabel, RSHabilityLabel, RSAtkLabel, RSAgilitylabel};
         JLabel[] AIAVLabels = {AVIDLabel, AVFighterLabel, AVHPLabel, AVHabilityLabel, AVATKLabel, AVAgilityLabel};
+        
+        JLabel[] RSPriority1Labels = {RSpr1_1image, RSpr1_1ID,RSpr1_2image, RSpr1_2ID,RSpr1_3image, RSpr1_3ID,RSpr1_4image, RSpr1_4ID };
+        JLabel[] RSPriority2Labels = {RSpr2_1image, RSpr2_1ID,RSpr2_2image, RSpr2_2ID,RSpr2_3image, RSpr2_3ID,RSpr2_4image, RSpr2_4ID };
+        JLabel[] RSPriority3Labels = {RSpr3_1image, RSpr3_1ID,RSpr3_2image, RSpr3_2ID,RSpr3_3image, RSpr3_3ID,RSpr3_4image, RSpr3_4ID };
+        
+        JLabel[] AVPriority1Labels = {AVpr1_1image, AVpr1_1ID,AVpr1_2image, AVpr1_2ID,AVpr1_3image, AVpr1_3ID,AVpr1_4image, AVpr1_4ID };
+        JLabel[] AVPriority2Labels = {AVpr2_1image, AVpr2_1ID,AVpr2_2image, AVpr2_2ID,AVpr2_3image, AVpr2_3ID,AVpr2_4image, AVpr2_4ID };
+        JLabel[] AVPriority3Labels = {AVpr3_1image, AVpr3_1ID,AVpr3_2image, AVpr3_2ID,AVpr3_3image, AVpr3_3ID,AVpr3_4image, AVpr3_4ID };
+        
+        JLabel[] ReinforcementLabels = {RSReinforcements,AVReinforcements};
+        
+        so.setRSPriority1Labels(RSPriority1Labels);
+        so.setRSPriority2Labels(RSPriority2Labels);
+        so.setRSPriority3Labels(RSPriority3Labels);
+        
+        so.setAVPriority1Labels(AVPriority1Labels);
+        so.setAVPriority1Labels(AVPriority2Labels);
+        so.setAVPriority1Labels(AVPriority3Labels);
+        
+        so.setReinforcementLabels(ReinforcementLabels);
+        
         ai.setRSLabels(AIRSLabels);
         ai.setAVLabels(AIAVLabels);
         
@@ -169,19 +190,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         RSpr1_4ID.setText("ID: ");
 
-        RSpr1_4image.setText("jLabel13");
-
         RSpr1_3ID.setText("ID: ");
-
-        RSpr1_3image.setText("jLabel13");
 
         RSpr1_2ID.setText("ID: ");
 
-        RSpr1_2image.setText("jLabel13");
-
         RSpr1_1ID.setText("ID: ");
-
-        RSpr1_1image.setText("jLabel13");
 
         jLabel20.setText("PRIORIDAD 1");
 
@@ -407,32 +420,30 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(AVHabilityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(AVATKLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jLabel3)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(RSHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(122, 122, 122)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(AVHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(RSIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(RSFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(96, 96, 96)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(AVFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(AVIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(6, 6, 6)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jLabel3)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(RSHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(122, 122, 122)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(AVHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(RSIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(RSFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(96, 96, 96)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AVFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(AVIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()

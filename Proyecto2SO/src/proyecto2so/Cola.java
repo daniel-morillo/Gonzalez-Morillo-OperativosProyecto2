@@ -92,6 +92,30 @@ public class Cola<T> {
         }
     }
     
+    public Character[] ObtenerCola(){
+        
+        Character[] resultado = new Character[4];
+        int count = 0;
+        Nodo pAux = getpFirst();
+        
+        while (pAux != null && count < 4){
+            
+            resultado[count] = pAux.getElemento();
+            pAux = pAux.getpNext();
+        }
+        
+        return resultado;
+    }
+    
+    public void ImprimirCola() {
+        
+        Nodo pAux = getpFirst();
+        
+        while (pAux != null){
+            System.out.println(pAux.getElemento().getID()+ ":" +pAux.getElemento().getName()+ ",");
+        }
+    }
+    
 
     public Nodo<T> getpFirst() {
         return pFirst;

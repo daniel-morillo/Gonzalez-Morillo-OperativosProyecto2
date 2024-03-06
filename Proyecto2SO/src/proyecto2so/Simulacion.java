@@ -49,6 +49,31 @@ public class Simulacion extends Thread{
                 getSo().actualizarColas();
                 System.out.println("Colas actualizadas");
                 
+                Nodo pAux = getCompany1().getPriority1().getpFirst();
+                System.out.println("Prioridad 1: ");
+                while (pAux != null){
+                    System.out.println(pAux.getElemento().getName());
+                    pAux = pAux.getpNext();
+                }
+                
+                System.out.println("\n------------------------------------------\n");
+                
+                pAux = getCompany1().getPriority2().getpFirst();
+                System.out.println("Prioridad 2: ");
+                while (pAux != null){
+                    System.out.println(pAux.getElemento().getName());
+                    pAux = pAux.getpNext();
+                }
+                
+                System.out.println("\n------------------------------------------\n");
+                
+                pAux = getCompany1().getPriority3().getpFirst();
+                System.out.println("Prioridad 3: ");
+                while (pAux != null){
+                    System.out.println(pAux.getElemento().getName());
+                    pAux = pAux.getpNext();
+                }
+                
                 System.out.println("\n------------------------------------------\n");
                 
                 
