@@ -5,6 +5,9 @@
 package proyecto2so;
 
 import java.util.concurrent.Semaphore;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -18,6 +21,16 @@ public class SO extends Thread  {
     private int Company2CharCounter;
     private int countCycle;
     private Semaphore mutex;
+    
+    private JLabel[] RSPriority1Labels;
+    private JLabel[] RSPriority2Labels;
+    private JLabel[] RSPriority3Labels;
+    
+    private JLabel[] AVPriority1Labels;
+    private JLabel[] AVPriority2Labels;
+    private JLabel[] AVPriority3Labels;
+    
+    private JLabel[] ReinforcementLabels;
     
     
     public  SO(Company Company1 , Company Company2, Semaphore mutex){
@@ -133,7 +146,7 @@ public class SO extends Thread  {
         
         
         if(!Company1.getPriority1().esVacia()){
-            pAux = getCompany1().getPriority1().getpLast();
+            pAux = getCompany1().getPriority1().getpFirst();
             
             while(pAux != null){
                 
@@ -148,7 +161,7 @@ public class SO extends Thread  {
         }
         
         if(!Company2.getPriority1().esVacia()){
-            pAux = getCompany2().getPriority1().getpLast();
+            pAux = getCompany2().getPriority1().getpFirst();
             
             while(pAux != null){
                 
@@ -165,7 +178,7 @@ public class SO extends Thread  {
         
         
         if(!Company1.getPriority2().esVacia()){
-            pAux = getCompany1().getPriority2().getpLast();
+            pAux = getCompany1().getPriority2().getpFirst();
             
             while(pAux != null){
                 
@@ -181,7 +194,7 @@ public class SO extends Thread  {
         }
         
         if(!Company2.getPriority2().esVacia()){
-            pAux = getCompany2().getPriority2().getpLast();
+            pAux = getCompany2().getPriority2().getpFirst();
             
             while(pAux != null){
                 
@@ -201,7 +214,7 @@ public class SO extends Thread  {
         
         
         if(!Company1.getPriority3().esVacia()){
-            pAux = getCompany1().getPriority3().getpLast();
+            pAux = getCompany1().getPriority3().getpFirst();
             
             while(pAux != null){
                 
@@ -217,7 +230,7 @@ public class SO extends Thread  {
         }
         
         if(!Company2.getPriority3().esVacia()){
-            pAux = getCompany2().getPriority3().getpLast();
+            pAux = getCompany2().getPriority3().getpFirst();
             
             while(pAux != null){
                 
@@ -243,7 +256,52 @@ public class SO extends Thread  {
             }
         }
         
+       ActLabels();
     }
+    
+    public void ActLabels(){
+        
+        Character[] previewRS1 = getCompany1().getPriority1().ObtenerCola();
+        Character[] previewRS2 = getCompany1().getPriority2().ObtenerCola();
+        Character[] previewRS3 = getCompany1().getPriority3().ObtenerCola();
+        
+        Character[] previewAV1 = getCompany2().getPriority1().ObtenerCola();
+        Character[] previewAV2 = getCompany2().getPriority2().ObtenerCola();
+        Character[] previewAV3 = getCompany2().getPriority3().ObtenerCola();
+        
+        Refresh(previewRS1,getRSPriority1Labels());
+        
+    }
+    
+    public void Refresh(Character[] preview, JLabel[] labels ) {
+        
+        int countLabel = 0;
+        int countChar = 0;
+        
+        while (countChar < 4) {
+            
+            if (preview[countChar] != null) {
+                
+                setImageLabel(labels[countLabel], preview[countChar].getPath());
+                labels[countLabel+1].setText(preview[countChar].getName()); 
+                
+            }
+            
+            countChar = countChar + 1;
+            countLabel = countLabel + 2;
+        
+        }
+            
+            
+        
+    }
+    
+    public void setImageLabel(JLabel nombrelabel, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(nombrelabel.getWidth(), nombrelabel.getHeight(), nombrelabel.getWidth()));
+        nombrelabel.setIcon(icon);
+    }
+    
 
     /**
      * @return the Company1
@@ -327,5 +385,103 @@ public class SO extends Thread  {
      */
     public void setCompany2CharCounter(int Company2CharCounter) {
         this.Company2CharCounter = Company2CharCounter;
+    }
+
+    /**
+     * @return the RSPriority1Labels
+     */
+    public JLabel[] getRSPriority1Labels() {
+        return RSPriority1Labels;
+    }
+
+    /**
+     * @param RSPriority1Labels the RSPriority1Labels to set
+     */
+    public void setRSPriority1Labels(JLabel[] RSPriority1Labels) {
+        this.RSPriority1Labels = RSPriority1Labels;
+    }
+
+    /**
+     * @return the RSPriority2Labels
+     */
+    public JLabel[] getRSPriority2Labels() {
+        return RSPriority2Labels;
+    }
+
+    /**
+     * @param RSPriority2Labels the RSPriority2Labels to set
+     */
+    public void setRSPriority2Labels(JLabel[] RSPriority2Labels) {
+        this.RSPriority2Labels = RSPriority2Labels;
+    }
+
+    /**
+     * @return the RSPriority3Labels
+     */
+    public JLabel[] getRSPriority3Labels() {
+        return RSPriority3Labels;
+    }
+
+    /**
+     * @param RSPriority3Labels the RSPriority3Labels to set
+     */
+    public void setRSPriority3Labels(JLabel[] RSPriority3Labels) {
+        this.RSPriority3Labels = RSPriority3Labels;
+    }
+
+    /**
+     * @return the AVPriority1Labels
+     */
+    public JLabel[] getAVPriority1Labels() {
+        return AVPriority1Labels;
+    }
+
+    /**
+     * @param AVPriority1Labels the AVPriority1Labels to set
+     */
+    public void setAVPriority1Labels(JLabel[] AVPriority1Labels) {
+        this.AVPriority1Labels = AVPriority1Labels;
+    }
+
+    /**
+     * @return the AVPriority2Labels
+     */
+    public JLabel[] getAVPriority2Labels() {
+        return AVPriority2Labels;
+    }
+
+    /**
+     * @param AVPriority2Labels the AVPriority2Labels to set
+     */
+    public void setAVPriority2Labels(JLabel[] AVPriority2Labels) {
+        this.AVPriority2Labels = AVPriority2Labels;
+    }
+
+    /**
+     * @return the AVPriority3Labels
+     */
+    public JLabel[] getAVPriority3Labels() {
+        return AVPriority3Labels;
+    }
+
+    /**
+     * @param AVPriority3Labels the AVPriority3Labels to set
+     */
+    public void setAVPriority3Labels(JLabel[] AVPriority3Labels) {
+        this.AVPriority3Labels = AVPriority3Labels;
+    }
+
+    /**
+     * @return the ReinforcementLabels
+     */
+    public JLabel[] getReinforcementLabels() {
+        return ReinforcementLabels;
+    }
+
+    /**
+     * @param ReinforcementLabels the ReinforcementLabels to set
+     */
+    public void setReinforcementLabels(JLabel[] ReinforcementLabels) {
+        this.ReinforcementLabels = ReinforcementLabels;
     }
 }
