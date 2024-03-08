@@ -102,9 +102,10 @@ public class Cola<T> {
             
             resultado[count] = pAux.getElemento();
             pAux = pAux.getpNext();
+            count ++;
         }
         
-        return resultado;
+        return resultado; //Este array esta al reves
     }
     
     public void ImprimirCola() {
@@ -113,7 +114,23 @@ public class Cola<T> {
         
         while (pAux != null){
             System.out.println(pAux.getElemento().getID()+ ":" +pAux.getElemento().getName()+ ",");
+            pAux = pAux.getpNext();
         }
+    }
+    
+    public String ColaInformation() {
+        
+        Nodo pAux = getpFirst();
+        String result = "";
+        
+        while (pAux != null){
+            
+            result = pAux.getElemento().getID() + ": " + pAux.getElemento().getName() + ";" + result;
+            pAux = pAux.getpNext();
+            
+        }
+        
+        return result;
     }
     
 

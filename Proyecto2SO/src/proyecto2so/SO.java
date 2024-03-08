@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -30,7 +31,7 @@ public class SO extends Thread  {
     private JLabel[] AVPriority2Labels;
     private JLabel[] AVPriority3Labels;
     
-    private JLabel[] ReinforcementLabels;
+    private JTextArea[] ReinforcementLabels;
     
     
     public  SO(Company Company1 , Company Company2, Semaphore mutex){
@@ -256,7 +257,27 @@ public class SO extends Thread  {
             }
         }
         
+        
+        checkReinforcements(Company1);
+        checkReinforcements(Company2);
+       
+        
        ActLabels();
+    }
+    
+    public void checkReinforcements(Company company) {
+        
+        if (!company.getReinforcements().esVacia()) {
+        
+        Nodo pAux = company.getReinforcements().getpFirst();
+        company.getReinforcements().desencolar();
+        
+        if (Math.random() >= 0.6) {
+            company.getPriority1().encolar(pAux.getElemento());
+        } else {
+            company.getReinforcements().encolar(pAux.getElemento());
+        }
+        }
     }
     
     public void ActLabels(){
@@ -270,31 +291,38 @@ public class SO extends Thread  {
         Character[] previewAV3 = getCompany2().getPriority3().ObtenerCola();
         
         Refresh(previewRS1,getRSPriority1Labels());
+        Refresh(previewRS2,getRSPriority2Labels());
+        Refresh(previewRS3,getRSPriority3Labels());
+        Refresh(previewAV1,getAVPriority1Labels());
+        Refresh(previewAV2,getAVPriority2Labels());
+        Refresh(previewAV3,getAVPriority3Labels());
+        
+        getReinforcementLabels()[0].setText(Company1.getReinforcements().ColaInformation());
+        getReinforcementLabels()[1].setText(Company2.getReinforcements().ColaInformation());
         
     }
     
     public void Refresh(Character[] preview, JLabel[] labels ) {
         
-        int countLabel = 0;
-        int countChar = 0;
+    int countLabel = 0;
+    int countChar = 0;
+    
+    while (countChar < preview.length && countLabel < labels.length) {
         
-        while (countChar < 4) {
+        if (preview[countChar] != null) {
+            setImageLabel(labels[countLabel], preview[countChar].getPath());
+            labels[countLabel+1].setText(preview[countChar].getID()); 
+        } else {
+            setImageLabel(labels[countLabel], "src/resources/NA.png");
+            labels[countLabel+1].setText("NA"); 
             
-            if (preview[countChar] != null) {
-                
-                setImageLabel(labels[countLabel], preview[countChar].getPath());
-                labels[countLabel+1].setText(preview[countChar].getName()); 
-                
-            }
-            
-            countChar = countChar + 1;
-            countLabel = countLabel + 2;
-        
         }
-            
-            
         
-    }
+        countChar++;
+        countLabel += 2;
+    }       
+}
+
     
     public void setImageLabel(JLabel nombrelabel, String root) {
         ImageIcon image = new ImageIcon(root);
@@ -474,14 +502,14 @@ public class SO extends Thread  {
     /**
      * @return the ReinforcementLabels
      */
-    public JLabel[] getReinforcementLabels() {
+    public JTextArea[] getReinforcementLabels() {
         return ReinforcementLabels;
     }
 
     /**
      * @param ReinforcementLabels the ReinforcementLabels to set
      */
-    public void setReinforcementLabels(JLabel[] ReinforcementLabels) {
+    public void setReinforcementLabels(JTextArea[] ReinforcementLabels) {
         this.ReinforcementLabels = ReinforcementLabels;
     }
 }
