@@ -6,6 +6,7 @@ package Interfaces;
 
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import proyecto2so.AI;
 import proyecto2so.Company;
 import proyecto2so.SO;
@@ -23,14 +24,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     String RSPhotos[] = {"src/resources/mordecai.png", "src/resources/rigby.png", "src/resources/skips.png", "src/resources/musculoso.png", "src/resources/fantasmin.png", "src/resources/benson.png", "src/resources/thomas.png", "src/resources/papaleta.png", "src/resources/death.png", "src/resources/antipops.png", "src/resources/margarita.png", "src/resources/cj.png", "src/resources/aylin.png"};
 
-    String AVNames[] = {"Aang", "Katara", "Sokka", "Toph", "Zuko", "Iroh", "Appa", "Momo", "Suki", "Azula", "Ozai", "Ty Lee", "Bumi"};
+    String AVNames[] = {"Aang", "Katara", "Sokka", "Toph", "Zuko", "Iroh", "Appa", "Momo", "Suki", "Azula", "Ozai", "Ty Lee", "Bumi", "Mai", "Leon tortuga"};
 
-    String AVPhotos[] = {"src/resources/Aang.PNG", "src/resources/Katara.png", "src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG", "src/resources/Ozai.PNG", "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG"};
+    String AVPhotos[] = {"src/resources/Aang.PNG", "src/resources/Katara.png", "src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG", "src/resources/Ozai.PNG", "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG", "src/resources/Mai.png", "src/resources/Leon-tortuga.png"};
 
     Company RSCompany = new Company('R', RSNames, RSPhotos);
     Company AVCompany = new Company('A', AVNames, AVPhotos);
 
-    AI ai = new AI(1000, RSCompany, AVCompany, mutex );
+    AI ai = new AI(1000, RSCompany, AVCompany, mutex);
     SO so = new SO(RSCompany, AVCompany, mutex);
 
     Simulacion simulacion = new Simulacion(RSCompany, AVCompany, so, ai);
@@ -45,6 +46,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         initComponents();
         JLabel[] AIRSLabels = {RSIDLabel, RSFighterLabel, RSHPLabel, RSHabilityLabel, RSAtkLabel, RSAgilitylabel};
         JLabel[] AIAVLabels = {AVIDLabel, AVFighterLabel, AVHPLabel, AVHabilityLabel, AVATKLabel, AVAgilityLabel};
+        ai.setStatus(statusLabel);
+        statusLabel.setText("Iniciando");
         ai.setRSLabels(AIRSLabels);
         ai.setAVLabels(AIAVLabels);
         
@@ -138,6 +141,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         RSpr3_1image = new javax.swing.JLabel();
         AVReinforcements = new javax.swing.JLabel();
         RSReinforcements = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
+        updateField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -277,6 +284,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         RSReinforcements.setText("REFUERZOS:");
 
+        jLabel12.setText("Estatus IA:");
+
+        statusLabel.setText("jLabel13");
+
+        updateButton.setText("Actualizar");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        updateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -407,36 +431,42 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(AVHabilityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(AVATKLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jLabel3)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(RSHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(122, 122, 122)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(AVHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(RSIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(RSFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(96, 96, 96)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(AVFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(AVIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(6, 6, 6)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jLabel3)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(RSHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(122, 122, 122)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(AVHPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(RSIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(RSFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(96, 96, 96)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AVFighterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(AVIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(RSReinforcements, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(updateButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AVReinforcements, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -735,12 +765,36 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AVReinforcements, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RSReinforcements, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RSReinforcements, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(statusLabel)
+                    .addComponent(updateButton)
+                    .addComponent(updateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateFieldActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            Integer newBattleDuration = Integer.parseInt(updateField.getText());
+
+
+            if(newBattleDuration > 0){
+                ai.setBattleDuration(newBattleDuration);
+            } else{
+                JOptionPane.showMessageDialog(null, "Error. Valor de duracion  no es valido");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. Valor de duracion  no es valido");
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -843,6 +897,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel29;
@@ -856,5 +911,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JButton updateButton;
+    private javax.swing.JTextField updateField;
     // End of variables declaration//GEN-END:variables
 }

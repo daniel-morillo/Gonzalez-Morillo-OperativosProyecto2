@@ -66,7 +66,7 @@ public class SO extends Thread  {
                     
                 }else{
                         
-                        System.out.println("pNo hay mas luchadores disponibles");
+                        System.out.println("No hay mas luchadores disponibles");
                         return null;
                     }
                 
@@ -108,7 +108,7 @@ public class SO extends Thread  {
                     
                 }else{
                         
-                        System.out.println("pNo hay mas luchadores disponibles");
+                        System.out.println("No hay mas luchadores disponibles");
                         return null;
                     }
                 
@@ -172,6 +172,7 @@ public class SO extends Thread  {
                 if(pAux.getElemento().getPriorityCounter() == 8){
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany1().getPriority1().encolar(pAux.getElemento());
+                    getCompany1().getPriority2().borrar(pAux.getElemento());
                     pAux = pAux.getpNext();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
@@ -188,6 +189,7 @@ public class SO extends Thread  {
                 if(pAux.getElemento().getPriorityCounter() == 8){
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany2().getPriority1().encolar(pAux.getElemento());
+                    getCompany2().getPriority2().borrar(pAux.getElemento());
                     pAux = pAux.getpNext();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
@@ -208,6 +210,7 @@ public class SO extends Thread  {
                 if(pAux.getElemento().getPriorityCounter() == 8){
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany1().getPriority2().encolar(pAux.getElemento());
+                    getCompany1().getPriority3().borrar(pAux.getElemento());
                     pAux = pAux.getpNext();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
@@ -224,6 +227,7 @@ public class SO extends Thread  {
                 if(pAux.getElemento().getPriorityCounter() == 8){
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany2().getPriority2().encolar(pAux.getElemento());
+                    getCompany2().getPriority3().borrar(pAux.getElemento());
                     pAux= pAux.getpNext();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);

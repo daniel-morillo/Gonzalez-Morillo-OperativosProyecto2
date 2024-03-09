@@ -29,6 +29,7 @@ public class AI extends Thread {
     private Semaphore mutex;
     private JLabel[] RSLabels;
     private JLabel[] AVLabels;
+    public JLabel status;
 
     public AI(Integer battleDuration, Company rsCompany, Company avCompany, Semaphore mutex) {
 
@@ -39,16 +40,17 @@ public class AI extends Thread {
         this.rsWins = 0;
         this.mutex = mutex;
         this.ganadores = new Cola();
-
     }
 
     /*Character1 = Regular show, Character2 = Avatar*/
     public void starBattle(Character character1, Character character2) {
-
+        
+        
         Random random = new Random();
         int result = random.nextInt(101);
 
         try {
+            status.setText("Procesando");
             sleep(this.getBattleDuration());
         } catch (InterruptedException ex) {
             Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,6 +76,7 @@ public class AI extends Thread {
                 int finalBlow = random.nextInt(2);
 
                 if (finalBlow == 0) {
+                    status.setText("Anunciando resultados");
                     System.out.println(character1.getName() + " logro acertar un golpe de gracia y se lleva la victoria");
 
                     this.rsWins = +1;
@@ -81,6 +84,7 @@ public class AI extends Thread {
                     this.ganadores.encolar(character1);
 
                 } else {
+                    status.setText("Anunciando resultados");
                     System.out.println(character2.getName() + " logro acertar un golpe de gracia y se lleva la victoria");
 
                     this.avWins = +1;
@@ -89,6 +93,7 @@ public class AI extends Thread {
                 }
 
             } else if (statsCharacter1 > statsCharacter2) {
+                status.setText("Anunciando resultados");
                 System.out.println(character1.getName() + " es el ganador");
 
                 this.rsWins = +1;
@@ -96,6 +101,7 @@ public class AI extends Thread {
                 this.ganadores.encolar(character1);
 
             } else {
+                status.setText("Anunciando resultados");
                 System.out.println(character2.getName() + " es el ganador");
 
                 this.avWins = +1;
@@ -105,16 +111,17 @@ public class AI extends Thread {
             }
 
         } else if (40 < result && result <= 67) {
-
+            status.setText("Anunciando resultados");
             System.out.println("Empieza la batalla entre: " + character1.getName() + " y " + character2.getName());
             System.out.println("...");
-            System.out.println("Ambos los luchadores no pueden continuar. La pelea termina en empate");
+            System.out.println("Ambos luchadores no pueden continuar. La pelea termina en empate");
 
             //Ambos personajes vuelven a ser encolados en sus respectivas colas
             this.rsCompany.getPriority1().encolar(character1);
             this.avCompany.getPriority1().encolar(character2);
 
         } else {
+            status.setText("Anunciando resultados");
             System.out.println("Empieza la batalla entre: " + character1.getName() + " y " + character2.getName());
             System.out.println("Los partipantes no se enceuntran listos. La pelea se cancela");
 
@@ -122,11 +129,13 @@ public class AI extends Thread {
             this.rsCompany.getReinforcements().encolar(character1);
             this.avCompany.getReinforcements().encolar(character2);
         }
+        status.setText("Esperando");
 
     }
 
     public void ActLabels() {
-
+        
+        status.setText("Anunciando resultados");
         getRSLabels()[0].setText(getRsCompany().getPriority1().leerCabeza().getID());
         setImageLabel(getRSLabels()[1], getRsCompany().getPriority1().leerCabeza().getPath());
         getRSLabels()[2].setText(String.valueOf(getRsCompany().getPriority1().leerCabeza().getVitality()));
@@ -238,4 +247,13 @@ public class AI extends Thread {
         this.AVLabels = AVLabels;
     }
 
+    public JLabel getStatus() {
+        return status;
+    }
+
+    public void setStatus(JLabel status) {
+        this.status = status;
+    }
+
+    
 }

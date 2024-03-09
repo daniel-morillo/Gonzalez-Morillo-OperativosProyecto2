@@ -46,8 +46,12 @@ public class Simulacion extends Thread{
                 System.out.println("Combatientes escogidos");
                 getAi().starBattle(Brawlers[0], Brawlers[1]);
                 
+                getAi().getStatus().setText("Esperando");
+                getSo().getMutex().acquire();
+                sleep(1000);
                 getSo().actualizarColas();
                 System.out.println("Colas actualizadas");
+                getSo().getMutex().release();
                 
                 System.out.println("\n------------------------------------------\n");
                 

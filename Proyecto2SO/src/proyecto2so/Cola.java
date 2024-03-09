@@ -67,7 +67,6 @@ public class Cola<T> {
             if (pFirst == null) {
                 pLast = null;
             }
-            System.out.println("Luchador " + C.getName() + " eliminado");
             size--;
             return;
         }
@@ -85,7 +84,6 @@ public class Cola<T> {
             if (actual == pLast) {
                 pLast = anterior;
             }
-            System.out.println("Luchador " + C.getName() + " eliminado");
             size--;
         } else {
             System.out.println("Elemento no encontrado");
