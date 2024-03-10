@@ -29,6 +29,7 @@ public class AI extends Thread {
     private Semaphore mutex;
     private JLabel[] RSLabels;
     private JLabel[] AVLabels;
+    public JLabel status;
 
     public AI(Integer battleDuration, Company rsCompany, Company avCompany, Semaphore mutex) {
 
@@ -44,7 +45,9 @@ public class AI extends Thread {
 
     /*Character1 = Regular show, Character2 = Avatar*/
     public void starBattle(Character character1, Character character2) {
-
+        
+        status.setText("Procesando");
+        
         Random random = new Random();
         int result = random.nextInt(101);
 
@@ -59,7 +62,7 @@ public class AI extends Thread {
         ActLabels();
         this.rsCompany.getPriority1().desencolar();
         this.avCompany.getPriority1().desencolar();
-
+        
         if (0 <= result && result <= 40) {
 
             System.out.println("Empieza la batalla entre: " + character1.getName() + " y " + character2.getName());
@@ -126,7 +129,8 @@ public class AI extends Thread {
     }
 
     public void ActLabels() {
-
+        
+        status.setText("Anunciando resultados");
         getRSLabels()[0].setText(getRsCompany().getPriority1().leerCabeza().getID());
         setImageLabel(getRSLabels()[1], getRsCompany().getPriority1().leerCabeza().getPath());
         getRSLabels()[2].setText(String.valueOf(getRsCompany().getPriority1().leerCabeza().getVitality()));
@@ -237,5 +241,15 @@ public class AI extends Thread {
     public void setAVLabels(JLabel[] AVLabels) {
         this.AVLabels = AVLabels;
     }
+
+    public JLabel getStatus() {
+        return status;
+    }
+
+    public void setStatus(JLabel status) {
+        this.status = status;
+    }
+    
+    
 
 }
