@@ -73,6 +73,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         ai.setRSLabels(AIRSLabels);
         ai.setAVLabels(AIAVLabels);
+        ai.setStatus(statusIA);
+        ai.getStatus().setText("Iniciando");
         
         simulacion.start();
     }
@@ -170,6 +172,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         AVReinArea = new javax.swing.JTextArea();
         TimeField = new javax.swing.JTextField();
         TimeButton = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        statusIA = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -367,6 +371,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(TimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, -1, -1));
 
+        jLabel12.setText("Estado de la IA:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 710, -1, -1));
+        getContentPane().add(statusIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 710, 160, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -485,6 +493,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel29;
@@ -500,5 +509,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel statusIA;
     // End of variables declaration//GEN-END:variables
 }
