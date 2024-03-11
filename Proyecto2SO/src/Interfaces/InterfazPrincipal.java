@@ -27,9 +27,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     String RSPhotos[] = {"src/resources/mordecai.png", "src/resources/rigby.png", "src/resources/skips.png", "src/resources/musculoso.png", "src/resources/fantasmin.png", "src/resources/benson.png", "src/resources/thomas.png", "src/resources/pops.png", "src/resources/death.png", "src/resources/antipops.png", "src/resources/margarita.png", "src/resources/cj.png", "src/resources/aylin.png","src/resources/GBF.png","src/resources/FNAF.png","src/resources/Gene.png","src/resources/Martillo.png","src/resources/Ross.png","src/resources/Susan.png","src/resources/Chad.png","src/resources/Demon.png"};
 
-    String AVNames[] = {"Aang", "Katara", "Sokka", "Toph", "Zuko", "Iroh", "Appa", "Momo", "Suki", "Azula", "Ozai", "Ty Lee", "Bumi"};
+    String AVNames[] = {"Aang", "Katara", "Sokka", "Toph", "Zuko", "Iroh", "Appa", "Momo", "Suki", "Azula", "Ozai", "Ty Lee", "Bumi", "Mai", "Leon tortuga", "Gyatso", "Roku", "Kyoshi", "Jet", "Zhao"};
 
-    String AVPhotos[] = {"src/resources/Aang.PNG", "src/resources/Katara.png", "src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG", "src/resources/Ozai.PNG", "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG"};
+    String AVPhotos[] = {"src/resources/Aang.PNG", "src/resources/Katara.png", "src/resources/Sokka.PNG", "src/resources/Toph.PNG", "src/resources/Zuko.PNG", "src/resources/Iroh.png", "src/resources/Appa.PNG", "src/resources/Momo.PNG", "src/resources/Suki.PNG", "src/resources/Azula.PNG", "src/resources/Ozai.PNG", "src/resources/Ty-Lee.PNG", "src/resources/Bumi.PNG", "src/resources/Mai.png", "src/resources/Leon-tortuga.png", "src/resources/Gyatso.png", "src/resources/Roku.png", "src/resources/Kyoshi.png", "src/resources/Jet.png", "src/resources/Zhao.png"};
     
     
 
