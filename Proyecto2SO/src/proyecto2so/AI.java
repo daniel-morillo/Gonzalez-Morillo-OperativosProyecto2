@@ -30,6 +30,7 @@ public class AI extends Thread {
     private JLabel[] RSLabels;
     private JLabel[] AVLabels;
     public JLabel status;
+    private JLabel[] Scorelabels;
 
     public AI(Integer battleDuration, Company rsCompany, Company avCompany, Semaphore mutex) {
 
@@ -44,9 +45,10 @@ public class AI extends Thread {
     }
 
     /*Character1 = Regular show, Character2 = Avatar*/
-    public void starBattle(Character character1, Character character2) {
+    public void starBattle(Character character1, Character character2) throws InterruptedException {
         
-        status.setText("Procesando");
+        ActLabels();
+        status.setText("Simulando Combate");
         
         Random random = new Random();
         int result = random.nextInt(101);
@@ -63,7 +65,7 @@ public class AI extends Thread {
         this.rsCompany.getPriority1().desencolar();
         this.avCompany.getPriority1().desencolar();
         
-        if (0 <= result && result <= 40) {
+        if (0 <= result && result <= 47) {
 
             System.out.println("Empieza la batalla entre: " + character1.getName() + " y " + character2.getName());
 
@@ -79,14 +81,14 @@ public class AI extends Thread {
                 if (finalBlow == 0) {
                     System.out.println(character1.getName() + " logro acertar un golpe de gracia y se lleva la victoria");
 
-                    this.rsWins = +1;
+                    this.rsWins  ++;
 
                     this.ganadores.encolar(character1);
 
                 } else {
                     System.out.println(character2.getName() + " logro acertar un golpe de gracia y se lleva la victoria");
 
-                    this.avWins = +1;
+                    this.avWins  ++;
 
                     this.ganadores.encolar(character2);
                 }
@@ -94,20 +96,20 @@ public class AI extends Thread {
             } else if (statsCharacter1 > statsCharacter2) {
                 System.out.println(character1.getName() + " es el ganador");
 
-                this.rsWins = +1;
+                this.rsWins ++;
 
                 this.ganadores.encolar(character1);
 
             } else {
                 System.out.println(character2.getName() + " es el ganador");
 
-                this.avWins = +1;
+                this.avWins ++;
 
                 this.ganadores.encolar(character2);
 
             }
 
-        } else if (40 < result && result <= 67) {
+        } else if (47 < result && result <= 67) {
 
             System.out.println("Empieza la batalla entre: " + character1.getName() + " y " + character2.getName());
             System.out.println("...");
@@ -128,9 +130,12 @@ public class AI extends Thread {
 
     }
 
-    public void ActLabels() {
+    public void ActLabels() throws InterruptedException {
         
         status.setText("Anunciando resultados");
+        sleep(300);
+        getScorelabels()[0].setText(String.valueOf(getRsWins()));
+        getScorelabels()[1].setText(String.valueOf(getAvWins()));
         getRSLabels()[0].setText(getRsCompany().getPriority1().leerCabeza().getID());
         setImageLabel(getRSLabels()[1], getRsCompany().getPriority1().leerCabeza().getPath());
         getRSLabels()[2].setText(String.valueOf(getRsCompany().getPriority1().leerCabeza().getVitality()));
@@ -248,6 +253,20 @@ public class AI extends Thread {
 
     public void setStatus(JLabel status) {
         this.status = status;
+    }
+
+    /**
+     * @return the Scorelabels
+     */
+    public JLabel[] getScorelabels() {
+        return Scorelabels;
+    }
+
+    /**
+     * @param Scorelabels the Scorelabels to set
+     */
+    public void setScorelabels(JLabel[] Scorelabels) {
+        this.Scorelabels = Scorelabels;
     }
     
     

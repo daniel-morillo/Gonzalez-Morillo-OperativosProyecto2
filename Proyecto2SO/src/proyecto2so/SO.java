@@ -33,6 +33,8 @@ public class SO extends Thread  {
     
     private JTextArea[] ReinforcementLabels;
     
+    private JTextArea[] QueueAreas;
+    
     
     public  SO(Company Company1 , Company Company2, Semaphore mutex){
         
@@ -45,6 +47,8 @@ public class SO extends Thread  {
     }
     
     public Character[] combatientes() throws InterruptedException{
+        
+        ActLabels();
         
         Character[] CharactersArray = new Character[2];
         Character rsCharacter = null;
@@ -187,6 +191,7 @@ public class SO extends Thread  {
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany1().getPriority1().encolar(pAux.getElemento());
                     pAux = pAux.getpNext();
+                    getCompany1().getPriority2().desencolar();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
                     pAux = pAux.getpNext();
@@ -203,6 +208,7 @@ public class SO extends Thread  {
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany2().getPriority1().encolar(pAux.getElemento());
                     pAux = pAux.getpNext();
+                    getCompany2().getPriority2().desencolar();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
                     pAux = pAux.getpNext();
@@ -223,6 +229,7 @@ public class SO extends Thread  {
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany1().getPriority2().encolar(pAux.getElemento());
                     pAux = pAux.getpNext();
+                    getCompany1().getPriority3().desencolar();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
                     pAux= pAux.getpNext();
@@ -239,6 +246,7 @@ public class SO extends Thread  {
                     pAux.getElemento().setPriorityCounter(0);
                     getCompany2().getPriority2().encolar(pAux.getElemento());
                     pAux= pAux.getpNext();
+                    getCompany2().getPriority3().desencolar();
                 }else{
                     pAux.getElemento().setPriorityCounter(pAux.getElemento().getPriorityCounter() + 1);
                     pAux= pAux.getpNext();
@@ -246,7 +254,7 @@ public class SO extends Thread  {
             }
         }
         
-        this.setCountCycle(+ 1);
+        this.setCountCycle(getCountCycle()+1);
         
         if (getCountCycle() >= 2){
             
@@ -296,6 +304,13 @@ public class SO extends Thread  {
         Refresh(previewAV1,getAVPriority1Labels());
         Refresh(previewAV2,getAVPriority2Labels());
         Refresh(previewAV3,getAVPriority3Labels());
+        
+        getQueueAreas()[0].setText(Company1.getPriority1().ColaInformation());
+        getQueueAreas()[1].setText(Company1.getPriority2().ColaInformation());
+        getQueueAreas()[2].setText(Company1.getPriority3().ColaInformation());
+        getQueueAreas()[3].setText(Company2.getPriority1().ColaInformation());
+        getQueueAreas()[4].setText(Company2.getPriority2().ColaInformation());
+        getQueueAreas()[5].setText(Company2.getPriority3().ColaInformation());
         
         getReinforcementLabels()[0].setText(Company1.getReinforcements().ColaInformation());
         getReinforcementLabels()[1].setText(Company2.getReinforcements().ColaInformation());
@@ -511,5 +526,19 @@ public class SO extends Thread  {
      */
     public void setReinforcementLabels(JTextArea[] ReinforcementLabels) {
         this.ReinforcementLabels = ReinforcementLabels;
+    }
+
+    /**
+     * @return the QueueAreas
+     */
+    public JTextArea[] getQueueAreas() {
+        return QueueAreas;
+    }
+
+    /**
+     * @param QueueAreas the QueueAreas to set
+     */
+    public void setQueueAreas(JTextArea[] QueueAreas) {
+        this.QueueAreas = QueueAreas;
     }
 }
