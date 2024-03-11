@@ -120,12 +120,15 @@ public class Cola<T> {
     
     public String ColaInformation() {
         
+        Cola Aux = new Cola();
+        
         Nodo pAux = getpFirst();
+         
         String result = "";
         
         while (pAux != null){
             
-            result = pAux.getElemento().getID() + ": " + pAux.getElemento().getName() + ";" + result;
+            result = result + pAux.getElemento().getID() + ": " + pAux.getElemento().getName() + ";";
             pAux = pAux.getpNext();
             
         }

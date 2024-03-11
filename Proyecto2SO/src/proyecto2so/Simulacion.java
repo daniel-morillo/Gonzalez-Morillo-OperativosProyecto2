@@ -33,7 +33,7 @@ public class Simulacion extends Thread{
     @Override
     public void run(){
         //Creacion de personajes
-        for (int i = 0; i < 12; i++) { //When the simulation is started, it generates the first 20 characters
+        for (int i = 0; i < 20; i++) { //When the simulation is started, it generates the first 20 characters
             getCompany1().CreateCharacter();
             getCompany2().CreateCharacter();
         }
@@ -42,11 +42,13 @@ public class Simulacion extends Thread{
         while (true) {
             try {
                 //Escogencia de primeros luchadores
+                sleep(300); 
+                getAi().getStatus().setText("Esperando");
                 Character[] Brawlers= getSo().combatientes();
                 System.out.println("Combatientes escogidos");
                 getAi().starBattle(Brawlers[0], Brawlers[1]);
                 
-                getAi().getStatus().setText("Esperando");
+                getAi().getStatus().setText("Simulando Combate");
                 getSo().getMutex().acquire();
                 sleep(1000);
                 getSo().actualizarColas();

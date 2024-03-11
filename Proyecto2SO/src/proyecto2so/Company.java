@@ -20,6 +20,7 @@ public class Company {
     private char Prefix;
     private int NumCharacter;
     private int Numimg;
+    private int SerialCharacter;
 
     public Company(char prefix, String[] names, String[] images) {
         
@@ -31,24 +32,29 @@ public class Company {
         this.Priority3 = new Cola();
         this.Reinforcements = new Cola();
         this.NumCharacter = 0;
+        this.SerialCharacter = 0;
         
     }
     
     public void CreateCharacter(){
       
         
+        if (getNumCharacter() >= getNames().length) {
+            setNumCharacter(0);
+            setNumimg(0);
+        }
         
         int Ability = (int)(Math.floor(Math.random()*100));
         int Agility = (int)(Math.floor(Math.random()*100));
         int Strength = (int)(Math.floor(Math.random()*100));
         int HP = (int)(Math.floor(Math.random()*100));
         
-        String ID = getPrefix() + String.valueOf(getNumCharacter());
+        String ID = getPrefix() + String.valueOf(getSerialCharacter());
         
         Character newCharacter = new Character(ID, getNames()[getNumimg()], getImages()[getNumimg()], isQuality(0), isQuality(1), isQuality(2), isQuality(3),Ability,HP, Strength, Agility);
         
         
-        if (getNumCharacter() < 3) {
+        if (getSerialCharacter()< 3) {
             
             switch (getNumCharacter()) {
                 
@@ -66,14 +72,15 @@ public class Company {
             givePriority(newCharacter);
         }
         
+        
+        
         setNumCharacter(getNumCharacter()+1);
         setNumimg(getNumimg()+1);
+        setSerialCharacter(getSerialCharacter()+1);
         
         
         
-        if (getNumimg()>= getNames().length) {
-            setNumimg(0);
-        }
+        
         
     }
     
@@ -107,26 +114,20 @@ public class Company {
     
     public void givePriority(Character character) {
         
-        int Quality = character.getAbilityQuality() + character.getAgilityQuality() + character.getStrengthQuality() + character.getVitalityQuality();
-        
-        switch (Quality) {
+        int Quality = character.getAbility() + character.getAgility() + character.getStrength() + character.getVitality();
+       
             
-            case 4: {getPriority1().encolar(character);
-            break;}
-            
-            case 3: {getPriority1().encolar(character);
-            break;}
-            
-            case 2: {getPriority2().encolar(character);
-            break;}
-            
-            case 1: {getPriority3().encolar(character);
-            break;}
-            
-            case 0: {getPriority3().encolar(character);
-            break;}
+            if (Quality >= 250) {
+                getPriority1().encolar(character);
+            }
+            else if (Quality >= 150 && Quality < 250) {
+                getPriority2().encolar(character);
+            }
+            else {
+                getPriority3().encolar(character);
+            }
         }
-    }
+    
     
     
 
@@ -254,6 +255,20 @@ public class Company {
      */
     public void setNumimg(int Numimg) {
         this.Numimg = Numimg;
+    }
+
+    /**
+     * @return the SerialCharacter
+     */
+    public int getSerialCharacter() {
+        return SerialCharacter;
+    }
+
+    /**
+     * @param SerialCharacter the SerialCharacter to set
+     */
+    public void setSerialCharacter(int SerialCharacter) {
+        this.SerialCharacter = SerialCharacter;
     }
     
     
